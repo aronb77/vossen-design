@@ -11,14 +11,21 @@ const links = [
     { title: "Contact", href: "/contact" },
 ];
 
-export default function NavLinks() {
+interface NavLinksProps {
+    mobile?: boolean;
+    onLinkClick?: () => void;
+}
+
+export default function NavLinks({ mobile = false, onLinkClick }: NavLinksProps) {
     return (
-        <div className="flex items-center gap-8">
+        <div className={mobile ? "flex flex-col gap-6" : "flex items-center gap-8"}>
             {links.map((link, index) => (
                 <Magnetic key={index}>
                     <Link
                         href={link.href}
-                        className="relative z-10 block text-sm uppercase tracking-widest text-stark/80 hover:text-stark transition-colors duration-300 group"
+                        onClick={onLinkClick}
+                        className={`relative z-10 block uppercase tracking-widest text-stark/80 hover:text-stark transition-colors duration-300 group ${mobile ? "text-2xl py-2" : "text-sm"
+                            }`}
                         data-cursor="hover"
                     >
                         {link.title}
