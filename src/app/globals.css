@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #0a0a0a;
+}
+
+[data-theme='dark'] {
+  --bg-primary: #0a0a0a;
+  --text-primary: #ffffff;
+}
+
+[data-theme='light'] .logo-dark {
+  display: none;
+}
+
+[data-theme='dark'] .logo-light {
+  display: none;
+}
+
+@theme {
+  --color-obsidian: var(--bg-primary);
+  --color-stark: var(--text-primary);
+  --color-electric: #FF4500;
+
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes grain {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
+.bg-grain {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: grain 8s steps(10) infinite;
+  opacity: 0.04;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Custom Utilities */
+@utility container-padding {
+  padding-inline: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 3rem;
+  }
+
+  @media (min-width: 1280px) {
+    padding-inline: 5rem;
+  }
+}
+
+/* Global Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  cursor: none;
+  /* Hide default cursor for custom one */
+  background-color: var(--color-obsidian);
+  color: var(--color-stark);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
