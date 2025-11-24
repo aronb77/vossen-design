@@ -49,7 +49,7 @@ export default function ProjectGallery() {
                     style={{ y: transforms[i % 4] }}
                     className={`w-full ${i % 2 === 0 ? "md:mt-0" : "md:mt-32"}`}
                 >
-                    <ProjectCard index={i} {...project} />
+                    <ProjectCard {...project} />
                 </motion.div>
             ))}
         </div>
