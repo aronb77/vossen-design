@@ -8,10 +8,9 @@ interface ProjectProps {
     title: string;
     category: string;
     image: string;
-    index: number;
 }
 
-export default function ProjectCard({ title, category, image, index }: ProjectProps) {
+export default function ProjectCard({ title, category, image }: ProjectProps) {
     return (
         <Link href="#" className="block group relative w-full aspect-[4/5] overflow-hidden" data-cursor="hover">
             <motion.div

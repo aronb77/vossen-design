@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Plus, ShoppingCart, Globe, Zap, Mail, Database, ArrowRight } from "lucide-react";
+import { Check, ShoppingCart, Globe, Zap, Mail, Database, ArrowRight } from "lucide-react";
 
 type Package = "start" | "growth" | "premium" | "enterprise";
 
@@ -48,10 +48,8 @@ const addonsData = [
 export default function ProjectConfigurator() {
     const [selectedPackage, setSelectedPackage] = useState<Package>("premium");
     const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
-    const [monthlyTotal, setMonthlyTotal] = useState(0);
-    const [oneTimeTotal, setOneTimeTotal] = useState(0);
 
-    useEffect(() => {
+    const { monthlyTotal, oneTimeTotal } = useMemo(() => {
         let mTotal = packages[selectedPackage].price;
         let oTotal = packages[selectedPackage].oneTimePrice;
 
@@ -63,8 +61,7 @@ export default function ProjectConfigurator() {
             }
         });
 
-        setMonthlyTotal(mTotal);
-        setOneTimeTotal(oTotal);
+        return { monthlyTotal: mTotal, oneTimeTotal: oTotal };
     }, [selectedPackage, selectedAddons]);
 
     const toggleAddon = (id: string) => {
@@ -102,8 +99,8 @@ export default function ProjectConfigurator() {
                                     key={key}
                                     onClick={() => setSelectedPackage(key)}
                                     className={`relative p-6 rounded-xl border text-left transition-all duration-300 group overflow-hidden ${selectedPackage === key
-                                            ? "bg-white/10 border-electric shadow-[0_0_30px_-10px_rgba(79,70,229,0.3)]"
-                                            : "bg-white/5 border-white/10 hover:border-white/20"
+                                        ? "bg-white/10 border-electric shadow-[0_0_30px_-10px_rgba(79,70,229,0.3)]"
+                                        : "bg-white/5 border-white/10 hover:border-white/20"
                                         }`}
                                 >
                                     <div className="relative z-10">
@@ -151,8 +148,8 @@ export default function ProjectConfigurator() {
                                         key={addon.id}
                                         onClick={() => toggleAddon(addon.id)}
                                         className={`flex items-center gap-4 p-4 rounded-lg border transition-all duration-300 ${selectedAddons.includes(addon.id)
-                                                ? "bg-white/10 border-electric"
-                                                : "bg-white/5 border-white/10 hover:bg-white/8"
+                                            ? "bg-white/10 border-electric"
+                                            : "bg-white/5 border-white/10 hover:bg-white/8"
                                             }`}
                                     >
                                         <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${selectedAddons.includes(addon.id) ? "bg-electric text-stark" : "bg-white/10 text-gray-400"
