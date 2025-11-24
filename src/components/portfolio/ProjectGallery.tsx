@@ -6,24 +6,24 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
     {
-        title: "Neon Nexus",
-        category: "WebGL Ervaring",
+        title: "Innovatieve Studio",
+        category: "Web Development",
         image: "/images/project1.png",
     },
     {
-        title: "Brutalist Arch",
-        category: "Architectuur Portfolio",
+        title: "Stratenbouwbedrijf",
+        category: "Corporate Website",
         image: "/images/project2.png",
     },
     {
-        title: "Fluid Dynamics",
-        category: "Interactieve Kunst",
+        title: "Vakmanschap in Verf",
+        category: "Portfolio Website",
         image: "/images/project3.png",
     },
     {
-        title: "Cyber Punk",
-        category: "E-Commerce",
-        image: "/images/project1.png", // Reusing for demo
+        title: "Bouwbedrijf Toren",
+        category: "Business Website",
+        image: "/images/project4.png",
     },
 ];
 
