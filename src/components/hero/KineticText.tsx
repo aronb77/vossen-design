@@ -16,11 +16,11 @@ export default function KineticText() {
         <div ref={container} className="relative z-10 flex flex-col items-center justify-center h-screen overflow-hidden px-6">
             <motion.div style={{ x }} className="relative">
                 <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent stroke-text select-none relative">
-                    {/* Dark theme: Digitale is lighter/more visible */}
-                    <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-t from-stark to-gray-500 opacity-20 dark:opacity-30" aria-hidden="true">
+                    {/* DIGITALE: Light theme = darker (gray-800), Dark theme = lighter (white) */}
+                    <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-t from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 opacity-20 dark:opacity-30" aria-hidden="true">
                         Digitale
                     </span>
-                    <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-500 dark:from-white dark:to-gray-400">
+                    <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-gray-800 to-gray-600 dark:from-white dark:to-gray-300">
                         Digitale
                     </span>
 
@@ -31,8 +31,8 @@ export default function KineticText() {
                 </h1>
             </motion.div>
             <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [0, -50]) }} className="relative">
-                {/* Light theme: Perfectie is much lighter (white), Dark theme: Perfectie is darker */}
-                <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-100 dark:from-stark dark:to-gray-500 select-none mix-blend-overlay opacity-80">
+                {/* PERFECTIE: Light theme = lighter (gray-200), Dark theme = darker (gray-600) */}
+                <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-gray-200 to-gray-100 dark:from-gray-600 dark:to-gray-500 select-none mix-blend-overlay opacity-80">
                     Perfectie
                 </h1>
             </motion.div>
