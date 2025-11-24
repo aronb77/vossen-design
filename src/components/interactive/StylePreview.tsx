@@ -94,8 +94,8 @@ export default function StylePreview() {
                                     key={style}
                                     onClick={() => setActiveStyle(style)}
                                     className={`group relative p-6 text-left border transition-all duration-300 overflow-hidden ${activeStyle === style
-                                            ? "border-electric bg-white/5"
-                                            : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                                        ? "border-electric bg-white/5"
+                                        : "border-white/10 hover:border-white/30 hover:bg-white/5"
                                         }`}
                                 >
                                     <div className={`absolute inset-0 bg-gradient-to-r from-electric/10 to-transparent transition-transform duration-500 ${activeStyle === style ? 'translate-x-0' : '-translate-x-full'}`} />
@@ -134,19 +134,19 @@ export default function StylePreview() {
                             }}
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
-                            className="relative w-full aspect-[16/10] md:aspect-[16/9] max-w-3xl mx-auto"
+                            className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/9] max-w-3xl mx-auto"
                         >
                             {/* Browser Frame */}
                             <div className="absolute inset-0 bg-[#1e1e1e] rounded-xl overflow-hidden shadow-2xl border border-white/10 flex flex-col transform-gpu transition-all duration-500">
                                 {/* Browser Header */}
-                                <div className="h-10 bg-[#2a2a2a] border-b border-white/5 flex items-center px-4 gap-4 shrink-0">
-                                    <div className="flex gap-2">
-                                        <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                                        <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                                <div className="h-8 md:h-10 bg-[#2a2a2a] border-b border-white/5 flex items-center px-3 md:px-4 gap-2 md:gap-4 shrink-0">
+                                    <div className="flex gap-1.5 md:gap-2">
+                                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#ff5f56]" />
+                                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#ffbd2e]" />
+                                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#27c93f]" />
                                     </div>
                                     <div className="flex-1 flex justify-center">
-                                        <div className="bg-[#1e1e1e] px-4 py-1 rounded text-xs text-gray-500 font-mono w-64 text-center truncate">
+                                        <div className="bg-[#1e1e1e] px-2 md:px-4 py-0.5 md:py-1 rounded text-[10px] md:text-xs text-gray-500 font-mono max-w-[200px] md:w-64 text-center truncate">
                                             vossendesign.com/preview/{activeStyle}
                                         </div>
                                     </div>
