@@ -15,11 +15,6 @@ export default function KineticText() {
     return (
         <div ref={container} className="relative z-10 flex flex-col items-center justify-center h-screen overflow-hidden">
             <motion.div style={{ x }} className="relative">
-                <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-stark to-gray-500 select-none mix-blend-overlay opacity-80">
-                    Perfectie
-                </h1>
-            </motion.div>
-            <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [0, -200]) }} className="relative">
                 <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent stroke-text select-none relative">
                     <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-t from-stark to-gray-500 opacity-20" aria-hidden="true">
                         Digitale
@@ -32,6 +27,11 @@ export default function KineticText() {
                     <div className="absolute inset-0 z-[-1] overflow-hidden mix-blend-screen opacity-50">
                         {/* Placeholder for video mask if needed, currently using gradient text for performance and style */}
                     </div>
+                </h1>
+            </motion.div>
+            <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [0, -200]) }} className="relative">
+                <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-stark to-gray-500 select-none mix-blend-overlay opacity-80">
+                    Perfectie
                 </h1>
             </motion.div>
 
