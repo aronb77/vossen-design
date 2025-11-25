@@ -18,17 +18,34 @@ export default function ContactForm() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Construct mailto link
         const subject = formState.subject === "other" ? `Contact: ${formState.customSubject || "Overig"}` : `Contact: ${formState.subject}`;
-        const body = `Naam: ${formState.name}%0D%0AEmail: ${formState.email}%0D%0A%0D%0ABericht:%0D%0A${formState.message}`;
+        const html = `
+            <h3>Nieuw Contactbericht</h3>
+            <p><strong>Naam:</strong> ${formState.name}</p>
+            <p><strong>Email:</strong> ${formState.email}</p>
+            <p><strong>Onderwerp:</strong> ${subject}</p>
+            <p><strong>Bericht:</strong></p>
+            <p>${formState.message.replace(/\n/g, '<br>')}</p>
+        `;
+        const text = `Naam: ${formState.name}\nEmail: ${formState.email}\nOnderwerp: ${subject}\nBericht:\n${formState.message}`;
 
-        window.location.href = `mailto:info@vossendesign.nl?subject=${encodeURIComponent(subject)}&body=${body}`;
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ subject, html, text }),
+            });
 
-        // Simulate success state for UI feedback
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        setFormState({ name: "", email: "", subject: "", message: "" });
+            if (!response.ok) throw new Error('Failed to send email');
+
+            setIsSuccess(true);
+            setFormState({ name: "", email: "", subject: "", message: "" });
+        } catch (error) {
+            console.error(error);
+            alert('Er ging iets mis bij het versturen. Probeer het later opnieuw of mail ons direct op info@vossendesign.nl');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
