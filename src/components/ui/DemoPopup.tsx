@@ -40,37 +40,17 @@ export default function DemoPopup() {
         const website = (form.elements.namedItem('demo-website') as HTMLInputElement).value;
 
         const subject = `Demo Aanvraag: ${projectName}`;
-        const html = `
-            <h3>Nieuwe Demo Aanvraag</h3>
-            <p><strong>Naam:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Project Naam:</strong> ${projectName}</p>
-            <p><strong>Doel:</strong> ${goal}</p>
-            <p><strong>Stijl:</strong> ${style}</p>
-            <p><strong>Huidige Website:</strong> ${website || "N.v.t."}</p>
-        `;
-        const text = `Naam: ${name}\nEmail: ${email}\nProject: ${projectName}\nDoel: ${goal}\nStijl: ${style}\nWebsite: ${website || "N.v.t."}`;
+        const body = `Naam: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AProject: ${projectName}%0D%0ADoel: ${goal}%0D%0AStijl: ${style}%0D%0AHuidige Website: ${website || "N.v.t."}`;
 
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ subject, html, text }),
-            });
+        window.location.href = `mailto:info@vossendesign.nl?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-            if (!response.ok) throw new Error('Failed to send email');
-
-            setIsSuccess(true);
-            setTimeout(() => {
-                setIsOpen(false);
-                setIsSuccess(false);
-            }, 3000);
-        } catch (error) {
-            console.error(error);
-            alert('Er ging iets mis bij het versturen. Probeer het later opnieuw of mail ons direct op info@vossendesign.nl');
-        } finally {
-            setIsSubmitting(false);
-        }
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        setTimeout(() => {
+            setIsOpen(false);
+            setIsSuccess(false);
+        }, 3000);
     };
 
     return (

@@ -9,6 +9,7 @@ export default function ContactForm() {
         name: "",
         email: "",
         subject: "",
+        customSubject: "",
         message: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,33 +20,14 @@ export default function ContactForm() {
         setIsSubmitting(true);
 
         const subject = formState.subject === "other" ? `Contact: ${formState.customSubject || "Overig"}` : `Contact: ${formState.subject}`;
-        const html = `
-            <h3>Nieuw Contactbericht</h3>
-            <p><strong>Naam:</strong> ${formState.name}</p>
-            <p><strong>Email:</strong> ${formState.email}</p>
-            <p><strong>Onderwerp:</strong> ${subject}</p>
-            <p><strong>Bericht:</strong></p>
-            <p>${formState.message.replace(/\n/g, '<br>')}</p>
-        `;
-        const text = `Naam: ${formState.name}\nEmail: ${formState.email}\nOnderwerp: ${subject}\nBericht:\n${formState.message}`;
+        const body = `Naam: ${formState.name}%0D%0AEmail: ${formState.email}%0D%0A%0D%0ABericht:%0D%0A${formState.message}`;
 
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ subject, html, text }),
-            });
+        window.location.href = `mailto:info@vossendesign.nl?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-            if (!response.ok) throw new Error('Failed to send email');
-
-            setIsSuccess(true);
-            setFormState({ name: "", email: "", subject: "", message: "" });
-        } catch (error) {
-            console.error(error);
-            alert('Er ging iets mis bij het versturen. Probeer het later opnieuw of mail ons direct op info@vossendesign.nl');
-        } finally {
-            setIsSubmitting(false);
-        }
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        setFormState({ name: "", email: "", subject: "", customSubject: "", message: "" });
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
