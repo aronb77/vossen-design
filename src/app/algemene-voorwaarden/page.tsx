@@ -33,7 +33,7 @@ export default function AlgemeneVoorwaarden() {
 
                         <section>
                             <h2 className="text-2xl font-bold text-stark mb-4">3. Offertes en Aanbiedingen</h2>
-                            <p>Alle offertes en aanbiedingen van Vossen Design zijn vrijblijvend, tenzij in de offerte een termijn voor aanvaarding is gesteld. Een offerte vervalt indien het product waarop de offerte of de aanbieding betrekking heeft in de tussentijd niet meer beschikbaar is.</p>
+                            <p>Alle offertes en aanbiedingen van Vossen Design zijn vrijblijvend, tenzij in de offerte een termijn voor aanvaarding is gesteld. Een offerte vervalt indien het product waarop de offerte of de aanbieding betrekking heeft in de tussentijd niet meer beschikbaar is. Alle genoemde prijzen zijn exclusief BTW, tenzij anders vermeld.</p>
                         </section>
 
                         <section>

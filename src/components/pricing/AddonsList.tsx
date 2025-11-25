@@ -65,7 +65,7 @@ export default function AddonsList() {
                             </p>
                             <div className="pt-6 border-t border-white/5">
                                 <p className="text-electric font-bold text-lg">
-                                    {addon.price}
+                                    {addon.price} <span className="text-[10px] text-gray-500 uppercase tracking-wider font-normal ml-1">excl. btw</span>
                                 </p>
                             </div>
                         </motion.div>

@@ -121,6 +121,7 @@ export default function PricingTable() {
                                     <div className="flex items-baseline gap-2">
                                         <span className="text-gray-500 line-through text-sm">{pkg.oldPrice}</span>
                                         <span className="text-3xl font-bold text-stark">{pkg.oneTimePrice}</span>
+                                        <span className="text-[10px] text-gray-500 uppercase tracking-wider">excl. btw</span>
                                     </div>
                                 </div>
                                 <div>
@@ -128,6 +129,7 @@ export default function PricingTable() {
                                     <div className="flex items-baseline gap-1">
                                         <span className="text-2xl font-bold text-electric">{pkg.monthlyPrice}</span>
                                         <span className="text-sm text-gray-400">/ mnd</span>
+                                        <span className="text-[10px] text-gray-500 uppercase tracking-wider ml-1">excl. btw</span>
                                     </div>
                                 </div>
                             </div>
