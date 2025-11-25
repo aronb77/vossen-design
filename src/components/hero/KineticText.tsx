@@ -10,7 +10,7 @@ export default function KineticText() {
         offset: ["start end", "end start"],
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], [0, 50]);
+    const x = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
     return (
         <div ref={container} className="relative z-10 flex flex-col items-center justify-center h-screen overflow-hidden px-6">
@@ -30,7 +30,7 @@ export default function KineticText() {
                     </div>
                 </h1>
             </motion.div>
-            <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [0, -50]) }} className="relative">
+            <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [0, -150]) }} className="relative">
                 {/* PERFECTIE: Light theme = much lighter (almost white), Dark theme = darker (gray-600) */}
                 <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-50 dark:from-gray-600 dark:to-gray-500 select-none mix-blend-overlay opacity-90 dark:opacity-80">
                     Perfectie
