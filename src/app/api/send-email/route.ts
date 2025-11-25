@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         console.log('Sending email with subject:', subject);
 
         const { data, error } = await resend.emails.send({
-            from: 'Vossen Design <onboarding@resend.dev>',
+            from: 'Vossen Design <info@vossendesign.nl>',
             to: ['info@vossendesign.nl'],
             subject: subject,
             html: html,
