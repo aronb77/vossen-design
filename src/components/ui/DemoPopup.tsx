@@ -81,7 +81,7 @@ export default function DemoPopup() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 }}
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-8 right-8 z-40 bg-electric text-stark px-6 py-3 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-white hover:text-obsidian transition-colors duration-300 hidden md:block"
+                className="fixed bottom-8 right-8 z-40 bg-electric text-stark px-6 py-3 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-white hover:text-obsidian transition-colors duration-300"
             >
                 Demo Aanvragen
             </motion.button>
