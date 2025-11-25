@@ -40,17 +40,37 @@ export default function DemoPopup() {
         const website = (form.elements.namedItem('demo-website') as HTMLInputElement).value;
 
         const subject = `Demo Aanvraag: ${projectName}`;
-        const body = `Naam: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AProject: ${projectName}%0D%0ADoel: ${goal}%0D%0AStijl: ${style}%0D%0AHuidige Website: ${website || "N.v.t."}`;
+        const html = `
+            <h2>Nieuwe Demo Aanvraag</h2>
+            <p><strong>Naam:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Project Naam:</strong> ${projectName}</p>
+            <p><strong>Doel:</strong> ${goal}</p>
+            <p><strong>Stijl:</strong> ${style}</p>
+            <p><strong>Huidige Website:</strong> ${website || "N.v.t."}</p>
+        `;
+        const text = `Nieuwe Demo Aanvraag\n\nNaam: ${name}\nEmail: ${email}\nProject: ${projectName}\nDoel: ${goal}\nStijl: ${style}\nWebsite: ${website || "N.v.t."}`;
 
-        window.location.href = `mailto:info@vossendesign.nl?subject=${encodeURIComponent(subject)}&body=${body}`;
+        try {
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ subject, html, text }),
+            });
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        setTimeout(() => {
-            setIsOpen(false);
-            setIsSuccess(false);
-        }, 3000);
+            if (!response.ok) throw new Error('Failed to send email');
+
+            setIsSuccess(true);
+            setTimeout(() => {
+                setIsOpen(false);
+                setIsSuccess(false);
+            }, 3000);
+        } catch (error) {
+            console.error(error);
+            alert('Er ging iets mis bij het versturen. Probeer het later opnieuw of mail ons direct op info@vossendesign.nl');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
