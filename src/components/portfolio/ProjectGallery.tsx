@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 
@@ -29,6 +29,17 @@ const projects = [
 
 export default function ProjectGallery() {
     const container = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["start end", "end start"],
@@ -46,7 +57,7 @@ export default function ProjectGallery() {
             {projects.map((project, i) => (
                 <motion.div
                     key={i}
-                    style={{ y: transforms[i % 4] }}
+                    style={{ y: isMobile ? 0 : transforms[i % 4] }}
                     className="w-full"
                 >
                     <ProjectCard {...project} />
