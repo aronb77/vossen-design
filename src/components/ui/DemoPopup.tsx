@@ -30,7 +30,21 @@ export default function DemoPopup() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        const form = e.target as HTMLFormElement;
+        const name = (form.elements.namedItem('demo-name') as HTMLInputElement).value;
+        const email = (form.elements.namedItem('demo-email') as HTMLInputElement).value;
+        const projectName = (form.elements.namedItem('demo-project-name') as HTMLInputElement).value;
+        const goal = (form.elements.namedItem('demo-goal') as HTMLSelectElement).value;
+        const style = (form.elements.namedItem('demo-style') as HTMLSelectElement).value;
+        const website = (form.elements.namedItem('demo-website') as HTMLInputElement).value;
+
+        const subject = `Demo Aanvraag: ${projectName}`;
+        const body = `Naam: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AProject: ${projectName}%0D%0ADoel: ${goal}%0D%0AStijl: ${style}%0D%0AHuidige Website: ${website || "N.v.t."}`;
+
+        window.location.href = `mailto:info@vossendesign.nl?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
         setIsSubmitting(false);
         setIsSuccess(true);
         setTimeout(() => {

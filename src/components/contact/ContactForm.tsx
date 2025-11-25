@@ -18,9 +18,14 @@ export default function ContactForm() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Construct mailto link
+        const subject = formState.subject === "other" ? `Contact: ${formState.customSubject || "Overig"}` : `Contact: ${formState.subject}`;
+        const body = `Naam: ${formState.name}%0D%0AEmail: ${formState.email}%0D%0A%0D%0ABericht:%0D%0A${formState.message}`;
 
+        window.location.href = `mailto:info@vossendesign.nl?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+        // Simulate success state for UI feedback
+        await new Promise(resolve => setTimeout(resolve, 1000));
         setIsSubmitting(false);
         setIsSuccess(true);
         setFormState({ name: "", email: "", subject: "", message: "" });
