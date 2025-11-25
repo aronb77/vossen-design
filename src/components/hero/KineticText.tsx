@@ -16,11 +16,11 @@ export default function KineticText() {
         <div ref={container} className="relative z-10 flex flex-col items-center justify-center h-screen overflow-hidden px-6">
             <motion.div style={{ x }} className="relative">
                 <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent stroke-text select-none relative">
-                    {/* DIGITALE: Light theme = lighter (almost white), Dark theme = lighter (white) */}
-                    <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-t from-white to-gray-50 dark:from-white dark:to-gray-300 opacity-20 dark:opacity-30" aria-hidden="true">
+                    {/* DIGITALE: Light theme = darker for contrast, Dark theme = lighter (white) */}
+                    <span className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-t from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 opacity-20 dark:opacity-30" aria-hidden="true">
                         Digitale
                     </span>
-                    <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-50 dark:from-white dark:to-gray-300">
+                    <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-gray-800 to-gray-600 dark:from-white dark:to-gray-300">
                         Digitale
                     </span>
 
@@ -31,8 +31,8 @@ export default function KineticText() {
                 </h1>
             </motion.div>
             <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [0, -150]) }} className="relative">
-                {/* PERFECTIE: Light theme = darker (gray-800), Dark theme = darker (gray-600) */}
-                <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-gray-800 to-gray-600 dark:from-gray-600 dark:to-gray-500 select-none mix-blend-overlay opacity-90 dark:opacity-80">
+                {/* PERFECTIE: Light theme = lighter and subtle, Dark theme = darker (gray-600) */}
+                <h1 className="text-[12vw] leading-[0.8] font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-50 dark:from-gray-600 dark:to-gray-500 select-none mix-blend-overlay opacity-90 dark:opacity-80">
                     Perfectie
                 </h1>
             </motion.div>
